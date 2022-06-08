@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camisa 10 | Cadastro</title>
+    <link rel="icon" href="assets/Visual ID/logo-ofcc.png">
+    <link rel="stylesheet" href="css/cadastro.css">
+    <link rel="stylesheet" href="css/global.css">
+    <script src="js/cadastro.js"></script>
+</head>
+
+<body>
+    <div class="banner">
+        <div class="header">
+            <div class="header_container">
+                <div class="div_logo">
+                    <img src="assets/Visual ID/logo-ofcc.png" class="escudo">
+                    <img src="assets/Visual ID/Imagem2.png" class="escrita">
+                </div>
+                <ul class="navbar">
+
+                    <li>
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="">Mural</a>
+                    </li>
+                    <li>
+                        <a>Registre-se</a>
+                    </li>
+
+                    <span onclick="pg_login()" class="login">
+                        Login
+                    </span>
+
+                </ul>
+
+            </div>
+        </div>
+        <div class="banner_container">
+            
+            <div class="card">
+                <h1>
+                    Crie a sua conta
+                </h1>
+
+                <div class="uniao">
+                    <input type="text" id="ipt_nome" placeholder="Seu nome">
+                    <input type="text" id="ipt_tel" placeholder="Seu telefone">
+                </div>
+
+                <select id="slc_time">
+                    <option value="0"> Escolha um time</option>
+                    <option value="opt_amg"> América-MG</option>
+                    <option value="opt_cap">Athletico-PR</option>
+                    <option value="opt_acg">Atlético-GO</option>
+                    <option value="opt_cam">Atlético-MG</option>
+                    <option value="opt_avai">Avaí</option>
+                    <option value="opt_bragantino">Bragantino</option>
+                    <option value="opt_bota">Botafogo</option>
+                    <option value="opt_ceara">Ceará SC</option>
+                    <option value="opt_corinthians">Corinthians</option>
+                    <option value="opt_coritiba">Coritiba</option>
+                    <option value="opt_cruzeiro">Cruzeiro</option>
+                    <option value="opt_cuiaba">Cuiabá</option>
+                    <option value="opt_flamengo">Flamengo</option>
+                    <option value="opt_fluminense">Fluminense</option>
+                    <option value="opt_fortaleza">Fortaleza</option>
+                    <option value="opt_goias">Goiás</option>
+                    <option value="opt_gremio">Grêmio</option>
+                    <option value="opt_inter">Internacional</option>
+                    <option value="opt_juventude">Juventude</option>
+                    <option value="opt_palmeiras">Palmeiras</option>
+                    <option value="opt_santos">Santos</option>
+                    <option value="opt_spfc">São Paulo</option>
+                    <option value="opt_vasco">Vasco</option>
+                </select>
+
+                <h2>
+                    Criar Login 
+                </h2>
+
+                <input type="text" id="ipt_username" placeholder="Usuário">
+                <input type="password" id="ipt_senha" placeholder="Senha">
+
+                <button onclick="cadastrar()">
+                    Junte-se a nós
+                </button>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="footer"></div>
+</body>
+
+</html>
+
+<script>
+    function cadastrar() {
+
+        //Recupere o valor da nova input pelo nome do id
+        // Agora vá para o método fetch logo abaixo
+        var idUsuarioVar = ipt_username.value;
+        var nomeVar = ipt_nome.value;
+        var telVar = ipt_tel.value;
+        var senhaVar = ipt_senha.value;
+        var timeVar = slc_time.value;
+       
+
+        if (idUsuarioVar == "" || nomeVar == "" || telVar == "" || senhaVar == "" || timeVar == 0) {
+            alert("Mensagem de erro para todos os campos em branco");
+
+            
+            return false;
+        }
+        // else {
+        //     setInterval(sumirMensagem, 5000)
+        // }
+
+        // Enviando o valor da nova input
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                idUsuarioServer: idUsuarioVar,
+                nomeServer: nomeVar,
+                telServer: telVar,
+                senhaServer: senhaVar,
+                timeServer: timeVar,
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+
+                mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+                setTimeout(() => {
+                    window.location = "login.html";
+                }, "2000")
+                
+                limparFormulario();
+                
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            
+        });
+
+        return false;
+    }
+
+</script>

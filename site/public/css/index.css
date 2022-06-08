@@ -1,0 +1,29 @@
+
+.banner {
+    height: 120vh;
+    width: 100vw;
+    background-size: cover;
+    background-image: 
+    linear-gradient(to top,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.334), rgba(0, 0, 0, 0.844)),
+      url('../Assets/Visual\ ID/fundo2.png');
+}
+
+.header {
+    background-image: 
+    linear-gradient(to top left,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.59))
+}
+.banner_container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 80%;
+    width: 85vw;
+    margin-left: 7.5vw;
+}
+
+h1 {
+    margin-right: 5vw;
+    margin-top: 15vh;
+    font-size: x-large;
+}
+

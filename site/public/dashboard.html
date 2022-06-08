@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camisa 10 | Gráficos</title>
+    <link rel="icon" href="assets/Visual ID/logo-ofcc.png">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/pl.css">
+    <script src="js/pl.js"></script>
+</head>
+
+<body>
+    <div class="header" id="div_header">
+
+        <div class="header_container">
+
+            <div class="div_logo">
+                <img src="assets/Visual ID/logo-ofcc.png" class="escudo">
+                <img src="assets/Visual ID/Imagem2.png" class="escrita">
+            </div>
+
+            <div class="navbar" onclick="ir('userplace.html')">
+
+                <h2 id="mensagem_usuario">Username</h2>
+                <img src="assets/Visual ID/icon-user.svg">
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="sidebar" id="div_sidebar">
+
+        <div class="container">
+
+            <div class="div_icone" onclick="ir('mural.html')">
+                <img src="assets/Visual ID/icon-mural.svg" >
+            </div>
+            
+            
+            <div class="div_icone_agora">
+                <img src="assets/Visual ID/icon-dash.svg">
+            </div>
+            
+            <div class="hidden_menu" id="div_hidden_menu">
+                
+                <div class="container">
+                    <h2>Gráficos</h2>
+                </div>
+                
+            </div>
+            
+            <div class="div_icone" onclick="ir('jogos.html')">
+                <img src="assets/Visual ID/icon-jogos.svg">
+            </div>
+
+
+            <div class="div_icone" onclick="ir('index.html')">
+                <img src="assets/Visual ID/icon-logout.svg">
+            </div>
+
+        </div>
+    </div>
+
+    <div class="banner" id="div_banner">
+        <div class="container">
+            <!-- <h1>"O campeão dos campeões"</h1> -->
+            <div class="card">
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="footer"></div>
+</body>
+
+</html>
+
+<script>
+       // personalizando as paginas conforme o a tabela time
+    var corPrimaria = sessionStorage.corPrimaria
+    var corSecundaria = sessionStorage.corSecundaria
+    var corTerciaria = sessionStorage.corTerciaria
+    var corQuartenária = sessionStorage.corQuartenaria
+    var backImage = sessionStorage.backImage
+    // var botao = document.querySelector("button")
+
+    div_header.style.backgroundImage = `linear-gradient(to left top, rgba(0, 0, 0, 0), ${corSecundaria}, ${corPrimaria}, ${corSecundaria})`
+    div_sidebar.style.backgroundColor = corTerciaria
+    // botao.style.backgroundColor = corPrimaria
+    div_banner.style.backgroundImage = `linear-gradient(to top, rgba(0, 0, 0, 0.698), rgba(0, 0, 0, 0.698), rgba(0, 0, 0, 0.715)),
+        url('${backImage}')`
+
+    // hrefs da sidebar
+    function ir(urll) {
+        window.location.href = urll
+    }
+
+    var usuario = sessionStorage.ID_USUARIO
+    // username.innerHTML = usuario[0].toLocaleUpperCase() + usuario.substr(1); // esta formatado para a primeira letra ser Maiuscula
+    mensagem_usuario.innerHTML = usuario[0].toLocaleUpperCase() + usuario.substr(1)
+</script>

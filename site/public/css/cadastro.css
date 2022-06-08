@@ -1,0 +1,47 @@
+
+.banner {
+    height: 120vh;
+    width: 100vw;
+    background-size: cover;
+    background-image:
+        linear-gradient(to right, rgba(17, 17, 17, 0.893), rgba(17, 17, 17, 0.72), rgba(0, 0, 0, 0),rgba(0, 0, 0, 0)),
+        url('../Assets/Visual\ ID/fundo3.png');
+    
+}
+
+.banner_container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 80%;
+    width: 85vw;
+    margin-left: 7.5vw;
+    margin-top: 10vh;
+}
+
+.uniao {
+    display: flex;
+    justify-content: space-between;
+    width: 20.25vw;
+}
+
+#ipt_nome {
+    width: 9vw;
+}
+
+#ipt_tel {
+    width: 9vw;
+}
+
+.card {
+    width: 30vw;
+    height: 70vh;
+    border-radius: 5px;
+}
+
+.card .container {
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camisa 10 | Login</title>
+    <link rel="icon" href="assets/Visual ID/logo-ofcc.png">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/global.css">
+    <script src="js/login.js"></script>
+</head>
+
+<body>
+    <div class="banner">
+        <div class="header">
+            <div class="header_container">
+                <div class="div_logo">
+                    <img src="assets/Visual ID/logo-ofcc.png" class="escudo">
+                    <img src="assets/Visual ID/Imagem2.png" class="escrita">
+                </div>
+                <ul class="navbar">
+
+                    <li>
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="">Mural</a>
+                    </li>
+                    <li>
+                        <a href="cadastro.html">Registre-se</a>
+                    </li>
+
+                    <span class="login">
+                        Login
+                    </span>
+
+                </ul>
+
+            </div>
+        </div>
+        <div class="banner_container">
+            <div class="card">
+                <h1>Login</h1>
+                <input type="text" id="ipt_username" placeholder="Usuário">
+                <input type="text" id="ipt_senha" placeholder="Senha">
+                <button onclick="login()">Entrar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer"></div>
+</body>
+
+</html>
+
+<script>
+    function login() {
+        ;
+
+        var idUsuarioVar = ipt_username.value;
+        var senhaVar = ipt_senha.value;
+
+        if (idUsuarioVar == "" || senhaVar == "") {
+            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+            return false;
+        }
+        // else {
+        //     setInterval(sumirMensagem, 5000)
+        // }
+
+        console.log("FORM LOGIN: ", idUsuarioVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                idUsuarioServer: idUsuarioVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                   
+                    // sessionStorage.USERNAME_USUARIO = json.username;
+                    sessionStorage.escudo = json.escudo;
+                    sessionStorage.backImage = json.backImage;
+                    sessionStorage.corPrimaria = json.corPrimaria;
+                    sessionStorage.corSecundaria = json.corSecundaria;
+                    sessionStorage.corTerciaria = json.corTerciaria;
+                    sessionStorage.corQuartenaria = json.corQuartenaria;
+                    sessionStorage.NOME_USUARIO = json.nomeUsuario;
+                    sessionStorage.ID_USUARIO = json.idUsuario;
+
+                    setTimeout(function () {
+                        window.location = "mural.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+</script>
