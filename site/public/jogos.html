@@ -182,12 +182,60 @@
         var cartoesAmarelos = ipt_cartoes.value
         var fkUsuario = sessionStorage.ID_USUARIO
 
-        if (campeonato == "0" || mandoCampo == "0" || resultadoPartida == "0" || golsPro == "" || golsContra == "" || escanteios == "" || cartoesAmarelos == "") {
-            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+        if (campeonato == "0") {
+            slc_campeonato.style.border = "1px solid darkred"
+            alert("Por favor, preencha todos os campos");
+
+            return false;
+        }
+
+        if (mandoCampo == "0") {
+            slc_mando.style.border = "1px solid darkred"
+            alert("Por favor, preencha todos os campos");
 
 
             return false;
         }
+
+        if (resultadoPartida == "0") {
+            slc_resultado.style.border = "1px solid darkred"
+            alert("Por favor, preencha todos os campos");
+
+
+            return false;
+        }
+
+        if (golsPro == "") {
+            alert("Por favor, preencha todos os campos");
+            ipt_gols_pro.style.border = "1px solid darkred"
+
+            return false;
+        }
+
+        if (golsContra == "") {
+            alert("Por favor, preencha todos os campos");
+            ipt_gols_contra.style.border = "1px solid darkred"
+
+            return false;
+        }
+
+        if (escanteios == "") {
+            alert("Por favor preencha todos os campos");
+            ipt_escanteios.style.border = "1px solid darkred"
+
+            return false;
+
+        }
+
+        if (cartoesAmarelos == "") {
+            alert("Por favor preencha todos os campos");
+            ipt_cartoes.style.border = "1px solid darkred"
+
+            return false;
+
+        }
+
+
         // else {
         //     setInterval(sumirMensagem, 5000)
         // }
@@ -216,10 +264,10 @@
 
             if (resposta.ok) {
 
-                mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+                mensagem_erro.innerHtml = "Partida registrada com sucesso!";
 
                 setTimeout(() => {
-                    window.location = "login.html";
+                    window.location = "jogos.html";
                 }, "2000")
 
                 limparFormulario();

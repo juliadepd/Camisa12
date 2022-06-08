@@ -65,35 +65,9 @@
         <div class="container">
             <!-- <h1>"O campeão dos campeões"</h1> -->
             <div class="card">
+                <input type="text" id="ipt_url_foto">
+                <button onclick="adicionar_foto()"> + </button>
 
-                <select id="slc_time">
-                    <option value="0"> Escolha um time</option>
-                    <option value="opt_amg"> América-MG</option>
-                    <option value="opt_cap">Athletico-PR</option>
-                    <option value="opt_acg">Atlético-GO</option>
-                    <option value="opt_cam">Atlético-MG</option>
-                    <option value="opt_avai">Avaí</option>
-                    <option value="opt_bragantino">Bragantino</option>
-                    <option value="opt_bota">Botafogo</option>
-                    <option value="opt_ceara">Ceará SC</option>
-                    <option value="opt_corinthians">Corinthians</option>
-                    <option value="opt_coritiba">Coritiba</option>
-                    <option value="opt_cruzeiro">Cruzeiro</option>
-                    <option value="opt_cuiaba">Cuiabá</option>
-                    <option value="opt_flamengo">Flamengo</option>
-                    <option value="opt_fluminense">Fluminense</option>
-                    <option value="opt_fortaleza">Fortaleza</option>
-                    <option value="opt_goias">Goiás</option>
-                    <option value="opt_gremio">Grêmio</option>
-                    <option value="opt_inter">Internacional</option>
-                    <option value="opt_juventude">Juventude</option>
-                    <option value="opt_palmeiras">Palmeiras</option>
-                    <option value="opt_santos">Santos</option>
-                    <option value="opt_spfc">São Paulo</option>
-                    <option value="opt_vasco">Vasco</option>
-                </select>
-                <button onclick="trocar()">trocar</button>
-                
             </div>
         </div>
     </div>
@@ -104,6 +78,11 @@
 </html>
 
 <script>
+
+    var lista_urls = []
+    function adicionar_foto() {
+        lista_urls.push(ipt_url_foto.value)
+    }
 
     // personalizando as paginas conforme o a tabela time
     var corPrimaria = sessionStorage.corPrimaria
@@ -130,50 +109,5 @@
     // recuperando id_usuario para personalizar com o nome
     var usuario = sessionStorage.ID_USUARIO
     mensagem_usuario.innerHTML = usuario[0].toLocaleUpperCase() + usuario.substr(1)
-
-
-
-    // api trocando time:
-
-    function trocar() {
-        var timeVar = slc_time.value;
-        var idUsuario = sessionStorage.ID_USUARIO 
-
-        fetch("/usuarios/trocar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/usuario.js
-
-                timeServer: timeVar,
-                idServer: idUsuario
-            })
-        }).then(function (resposta) {
-
-            console.log("resposta: ", resposta);
-
-            if (resposta.ok) {
-
-                mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-
-                setTimeout(() => {
-                    window.location = "login.html";
-                }, "2000")
-                
-                limparFormulario();
-                
-            } else {
-                throw ("Houve um erro ao tentar realizar o cadastro!");
-            }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-            
-        });
-
-        return false;
-    }
 
 </script>
