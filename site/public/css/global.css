@@ -147,3 +147,13 @@ a:hover::after {
     height: 25vh;
     background-color: black;
 }
+
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.85);
+    border-radius: 10px;
+}
