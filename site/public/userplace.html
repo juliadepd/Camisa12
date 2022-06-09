@@ -60,34 +60,39 @@
             <!-- <h1>"O campeão dos campeões"</h1> -->
             <div class="card">
 
-                <select id="slc_time">
-                    <option value="0"> Escolha um time</option>
-                    <option value="opt_amg"> América-MG</option>
-                    <option value="opt_cap">Athletico-PR</option>
-                    <option value="opt_acg">Atlético-GO</option>
-                    <option value="opt_cam">Atlético-MG</option>
-                    <option value="opt_avai">Avaí</option>
-                    <option value="opt_bragantino">Bragantino</option>
-                    <option value="opt_bota">Botafogo</option>
-                    <option value="opt_ceara">Ceará SC</option>
-                    <option value="opt_corinthians">Corinthians</option>
-                    <option value="opt_coritiba">Coritiba</option>
-                    <option value="opt_cruzeiro">Cruzeiro</option>
-                    <option value="opt_cuiaba">Cuiabá</option>
-                    <option value="opt_flamengo">Flamengo</option>
-                    <option value="opt_fluminense">Fluminense</option>
-                    <option value="opt_fortaleza">Fortaleza</option>
-                    <option value="opt_goias">Goiás</option>
-                    <option value="opt_gremio">Grêmio</option>
-                    <option value="opt_inter">Internacional</option>
-                    <option value="opt_juventude">Juventude</option>
-                    <option value="opt_palmeiras">Palmeiras</option>
-                    <option value="opt_santos">Santos</option>
-                    <option value="opt_spfc">São Paulo</option>
-                    <option value="opt_vasco">Vasco</option>
-                </select>
-                <button onclick="trocar()">trocar</button>
-                
+                <h1>Página do usuário</h1>
+
+                <div id="dados_usuario" class="dados_user">
+                    <h4 id="dados"></h4>
+                    <select id="slc_time">
+                        <option value="0"> Escolha um time</option>
+                        <option value="opt_amg"> América-MG</option>
+                        <option value="opt_cap">Athletico-PR</option>
+                        <option value="opt_acg">Atlético-GO</option>
+                        <option value="opt_cam">Atlético-MG</option>
+                        <option value="opt_avai">Avaí</option>
+                        <option value="opt_bragantino">Bragantino</option>
+                        <option value="opt_bota">Botafogo</option>
+                        <option value="opt_ceara">Ceará SC</option>
+                        <option value="opt_corinthians">Corinthians</option>
+                        <option value="opt_coritiba">Coritiba</option>
+                        <option value="opt_cruzeiro">Cruzeiro</option>
+                        <option value="opt_cuiaba">Cuiabá</option>
+                        <option value="opt_flamengo">Flamengo</option>
+                        <option value="opt_fluminense">Fluminense</option>
+                        <option value="opt_fortaleza">Fortaleza</option>
+                        <option value="opt_goias">Goiás</option>
+                        <option value="opt_gremio">Grêmio</option>
+                        <option value="opt_inter">Internacional</option>
+                        <option value="opt_juventude">Juventude</option>
+                        <option value="opt_palmeiras">Palmeiras</option>
+                        <option value="opt_santos">Santos</option>
+                        <option value="opt_spfc">São Paulo</option>
+                        <option value="opt_vasco">Vasco</option>
+                    </select>
+                    <button class="troca" onclick="trocar()">Reconfigurar</button>
+                    <h4 id="troca_sucedida"></h4>
+                </div>
             </div>
         </div>
     </div>
@@ -98,6 +103,7 @@
 </html>
 
 <script>
+
 
     // personalizando as paginas conforme o a tabela time
     var corPrimaria = sessionStorage.corPrimaria
@@ -118,8 +124,13 @@
     }
 
     // recuperando id_usuario para personalizar com o nome
+    var idUsuario = sessionStorage.ID_USUARIO
+    var nome = sessionStorage.NOME_USUARIO
     var usuario = sessionStorage.ID_USUARIO
     mensagem_usuario.innerHTML = usuario[0].toLocaleUpperCase() + usuario.substr(1)
+    dados.innerHTML = `Bem vindo(a), ${nome}! <br>
+    <br> Caso deseje configurar um novo time, selecione-o abaixo:`
+
 
 
 
@@ -127,7 +138,7 @@
 
     function trocar() {
         var timeVar = slc_time.value;
-        var idUsuario = sessionStorage.ID_USUARIO 
+        var idUsuario = sessionStorage.ID_USUARIO
 
         fetch("/usuarios/trocar", {
             method: "POST",
@@ -147,20 +158,20 @@
 
             if (resposta.ok) {
 
-                alert("Troca realizada com sucesso! Realize um novo login para checar a mudança");
+                troca_sucedida.innerHTML += "Troca realizada com sucesso! Realize um novo login para checar a mudança";
 
                 setTimeout(() => {
                     window.location = "login.html";
                 }, "2000")
-                
+
                 limparFormulario();
-                
-            } else {
-                throw ("Houve um erro ao tentar realizar o cadastro!");
+
+            } else if (timeVar == 0) {
+                alert("Por favor, selecione o novo time.");
             }
         }).catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
-            
+
         });
 
         return false;

@@ -20,6 +20,10 @@ router.post("/autenticar", function (req, res) {
     usuarioController.login(req, res);
 });
 
+router.post("/mural", function (req, res) {
+    usuarioController.mural(req, res);
+});
+
 router.post("/trocar", function (req, res) {
     usuarioController.trocar(req, res);
 });

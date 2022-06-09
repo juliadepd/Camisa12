@@ -17,7 +17,7 @@
 
         <div class="header_container">
 
-            <div class="div_logo">
+            <div class="div_logo" onclick="ir('index.html')">
                 <img src="assets/Visual ID/logo-ofcc.png" class="escudo">
                 <img src="assets/Visual ID/Imagem2.png" class="escrita">
             </div>
@@ -39,12 +39,6 @@
                 <img src="assets/Visual ID/icon-mural.svg">
             </div>
 
-            <div class="hidden_menu" id="div_hidden_menu">
-                <div class="container">
-                    <h2>Mural</h2>
-                </div>
-            </div>
-
             <div class="div_icone" onclick="ir('brasileirao.html')">
                 <img src="assets/Visual ID/icon-dash.svg">
             </div>
@@ -63,26 +57,27 @@
 
     <div class="banner" id="div_banner">
         <div class="container">
-            <!-- <h1>"O campeão dos campeões"</h1> -->
+
             <div class="card">
-                <input type="text" id="ipt_url_foto">
-                <button onclick="adicionar_foto()"> + </button>
+
+                <h1>Mural</h1>
+                <div id="div_foto1"></div>
+                <div id="div_foto2"></div>
+                <div id="div_foto3"></div>
+                <div id="div_foto4"></div>
+                <div id="div_foto5"></div>
 
             </div>
         </div>
     </div>
 
-    <div class="footer"></div>
 </body>
 
 </html>
 
 <script>
 
-    var lista_urls = []
-    function adicionar_foto() {
-        lista_urls.push(ipt_url_foto.value)
-    }
+
 
     // personalizando as paginas conforme o a tabela time
     var corPrimaria = sessionStorage.corPrimaria
@@ -90,24 +85,78 @@
     var corTerciaria = sessionStorage.corTerciaria
     var corQuartenária = sessionStorage.corQuartenaria
     var backImage = sessionStorage.backImage
-    var botao = document.querySelector("button")
 
     div_header.style.backgroundImage = `linear-gradient(to left top, rgba(0, 0, 0, 0), ${corSecundaria}, ${corPrimaria}, ${corSecundaria})`
     div_sidebar.style.backgroundColor = corTerciaria
-    botao.style.backgroundColor = corPrimaria
-    div_banner.style.backgroundImage = `linear-gradient(to top, rgba(0, 0, 0, 0.698), rgba(0, 0, 0, 0.698), rgba(0, 0, 0, 0.715)), url('${backImage}')`
+
+    div_banner.style.backgroundImage = `linear-gradient(to top, rgba(0, 0, 0, 0.698), rgba(0, 0, 0, 0.698), rgba(0, 0, 0, 0.715)),
+        url('${backImage}')`
 
     // hrefs da sidebar
     function ir(urll) {
         window.location.href = urll
     }
 
-    function direcionar_mudanca_time() {
-        user_place.style.display = "block"
-    }
-
     // recuperando id_usuario para personalizar com o nome
     var usuario = sessionStorage.ID_USUARIO
     mensagem_usuario.innerHTML = usuario[0].toLocaleUpperCase() + usuario.substr(1)
+
+
+    // --------------------------------------------- api inserindo mural
+
+    // function mural() {
+    //     var idUsuario = sessionStorage.ID_USUARIO
+    //     var fkUsuario = sessionStorage.ID_USUARIO
+    //     var foto1 = slc_foto1.value
+    //     var foto2 = slc_foto2.value
+    //     var foto3 = slc_foto3.value
+    //     var foto4 = slc_foto4.value
+    //     var foto5 = slc_foto5.value
+
+
+    //     fetch("/usuarios/mural", {
+    //         method: "POST",
+    //         headers: {
+    //             "Content-Type": "application/json"
+    //         },
+    //         body: JSON.stringify({
+    //             // crie um atributo que recebe o valor recuperado aqui
+    //             // Agora vá para o arquivo routes/usuario.js
+
+    //             timeServer: timeVar,
+    //             idServer: idUsuario,
+    //             fkServer: fkUsuario,
+    //             foto1Server: slc_foto1.value,
+    //             foto2Server: slc_foto2.value,
+    //             foto3Server: slc_foto3.value,
+    //             foto4Server: slc_foto4.value,
+    //             foto5Server: slc_foto5.value
+    //         })
+    //     }).then(function (resposta) {
+
+    //         console.log("resposta: ", resposta);
+
+    //         if (resposta.ok) {
+
+    //             troca_sucedida.innerHTML += "Troca realizada com sucesso! Realize um novo login para checar a mudança";
+
+    //             setTimeout(() => {
+    //                 window.location = "login.html";
+    //             }, "2000")
+
+    //             limparFormulario();
+
+    //         } else if (timeVar == 0) {
+    //             alert("Por favor, selecione o novo time.");
+    //         }
+    //     }).catch(function (resposta) {
+    //         console.log(`#ERRO: ${resposta}`);
+
+    //     });
+
+    //     return false;
+    // }
+
+
 
 </script>

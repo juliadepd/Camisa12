@@ -79,6 +79,7 @@ button:hover {
     align-items: center;
     width: 17vw;
     justify-content: space-around;
+    cursor: pointer;
 }
 
 .escrita {
@@ -143,11 +144,11 @@ a:hover::after {
     transition: 0.1s;
 }
 
-.footer {
-    height: 25vh;
-    background-color: black;
+::-webkit-scrollbar {
+    width: 10px;
 }
 
+/* Track */
 ::-webkit-scrollbar-track {
     border-radius: 10px;
 }

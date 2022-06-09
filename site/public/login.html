@@ -16,7 +16,7 @@
     <div class="banner">
         <div class="header">
             <div class="header_container">
-                <div class="div_logo">
+                <div class="div_logo" onclick="ir('index.html')">
                     <img src="assets/Visual ID/logo-ofcc.png" class="escudo">
                     <img src="assets/Visual ID/Imagem2.png" class="escrita">
                 </div>
@@ -26,7 +26,7 @@
                         <a href="index.html">Home</a>
                     </li>
                     <li>
-                        <a href="">Mural</a>
+                        <a href="login.html">Gráficos</a>
                     </li>
                     <li>
                         <a href="cadastro.html">Registre-se</a>
@@ -56,16 +56,32 @@
 </html>
 
 <script>
+
+function ir(urll) {
+        window.location.href = urll
+    }
     function login() {
         ;
 
         var idUsuarioVar = ipt_username.value;
         var senhaVar = ipt_senha.value;
 
-        if (idUsuarioVar == "" || senhaVar == "") {
-            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+      
+        if (idUsuarioVar == "") {
+            ipt_username.style.border = "1px solid darkred"
+            alert("Por favor, preencha todos os campos");
+
             return false;
         }
+
+        if (senhaVar == "") {
+            ipt_senha.style.border = "1px solid darkred"
+            alert("Por favor, preencha todos os campos");
+
+
+            return false;
+        }
+
         // else {
         //     setInterval(sumirMensagem, 5000)
         // }
@@ -92,7 +108,6 @@
                     console.log(json);
                    
                     // sessionStorage.USERNAME_USUARIO = json.username;
-                    sessionStorage.escudo = json.escudo;
                     sessionStorage.backImage = json.backImage;
                     sessionStorage.corPrimaria = json.corPrimaria;
                     sessionStorage.corSecundaria = json.corSecundaria;
@@ -100,6 +115,8 @@
                     sessionStorage.corQuartenaria = json.corQuartenaria;
                     sessionStorage.NOME_USUARIO = json.nomeUsuario;
                     sessionStorage.ID_USUARIO = json.idUsuario;
+                    sessionStorage.telUsuario = json.telUsuario;
+                    sessionStorage.fkTime - json.fkTime;
 
                     setTimeout(function () {
                         window.location = "mural.html";
@@ -109,7 +126,7 @@
 
             } else {
 
-                console.log("Houve um erro ao tentar realizar o login!");
+               alert("Usuário ou senha incorretos, tente novamente.");
 
                 resposta.text().then(texto => {
                     console.error(texto);

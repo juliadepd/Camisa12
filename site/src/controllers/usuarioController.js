@@ -100,6 +100,41 @@ function cadastrar(req, res) {
     }
 }
 
+function mural(req, res) {
+    var idUsuario = req.body.idServer;
+    var foto1 = req.body.foto1Server;
+    var foto2 = req.body.foto2Server;
+    var foto3 = req.body.foto3Server;
+    var foto4 = req.body.foto4Server;
+    var foto5 = req.body.foto5Server;
+
+    // Faça as validações dos valores
+    // if (fkTime == undefined) {
+    //     res.status(400).send("Seu nome está undefined!");
+    // } else if (idUsuario == undefined) {
+    //     res.status(400).send("Seu telefone está undefined!");
+    // } else {
+        
+        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+        usuarioModel.mural(foto1, foto2, foto3, foto4, foto5, fkUsuario, idUsuario)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    // }
+}
+
+
 function trocar(req, res) {
     var fkTime = req.body.timeServer;
     var idUsuario = req.body.idServer;
@@ -180,6 +215,7 @@ function partida(req, res) {
 module.exports = {
     login,
     cadastrar,
+    mural,
     listar,
     testar,
     trocar,

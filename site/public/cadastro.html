@@ -16,8 +16,8 @@
     <div class="banner">
         <div class="header">
             <div class="header_container">
-                <div class="div_logo">
-                    <img src="assets/Visual ID/logo-ofcc.png" class="escudo">
+                <div class="div_logo" onclick="ir('index.html')">
+                    <img src="assets/Visual ID/logo-ofcc.png" class="escudo" >
                     <img src="assets/Visual ID/Imagem2.png" class="escrita">
                 </div>
                 <ul class="navbar">
@@ -26,7 +26,7 @@
                         <a href="index.html">Home</a>
                     </li>
                     <li>
-                        <a href="">Mural</a>
+                        <a href="login.html">Gráficos</a>
                     </li>
                     <li>
                         <a>Registre-se</a>
@@ -101,6 +101,9 @@
 
 <script>
 
+function ir(urll) {
+        window.location.href = urll
+    }
 
     function cadastrar() {
 
@@ -111,58 +114,6 @@
         var telVar = ipt_tel.value;
         var senhaVar = ipt_senha.value;
         var timeVar = slc_time.value;
-
-
-
-        //         if (nomeVar == "" || telVar == "" || senhaVar == "" || timeVar == "0" || idUsuarioVar == "" ) {
-        //     span_validacao.innerHTML = "Por favor preencha todos os campos";
-
-        //     texto_cadastro.style.marginBottom = "30px";
-
-        //     /* marca o campo cpf/cnpj se estiver vazio */
-        //     if (nomeVar !== "") {
-        //       ipt_nome.style.border = "none";
-        //     } else {
-        //       ipt_nome.style.border = "1px solid red";
-        //     }
-
-        //     /* marca o campo email se estiver vazio */
-        //     if (telVar !== "") {
-        //       ipt_tel.style.border = "none";
-        //     } else {
-        //       ipt_tel.style.border = "1px solid red";
-        //     }
-
-        //     /* marca o campo nome/razão social se estiver vazio */
-        //     if (senhaVar !== "") {
-        //       ipt_senha.style.border = "none";
-        //     } else {
-        //       ipt_senha.style.border = "1px solid red";
-        //     }
-
-        //     /* marca o campo senha se estiver vazio */
-        //     if (timeVar !== "0") {
-        //       slc_time.style.border = "none";
-        //     } else {
-        //       slc_time.style.border = "1px solid red";
-        //       alert("Por favor, escolha um time");
-        //     }
-
-
-        //     /* marca o campo telefone se estiver vazio */
-        //     if (idUsuarioVar.value !== "") {
-        //       ipt_tel.style.border = "none";
-        //     } else {
-        //       ipt_tel.style.border = "1px solid red";
-        //     }
-        //   } else {
-        //     /* tira as marcações das ipts já preenchidas */
-        //     ipt_tel.style.border = "none";
-        //     ipt_senha.style.border = "none";
-        //     ipt_repetir_senha.style.border = "none";
-        //     ipt_nome_razao.style.border = "none";
-        //     ipt_email.style.border = "none";
-        //     ipt_cpf_cnpj.style.border = "none";
 
         //         // -----------------------------------
 
